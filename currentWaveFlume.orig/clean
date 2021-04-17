@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm *.log
+rm -r constant/polyMesh
+rm -fr *[0-9].[0-9]* [0-9] [1-6]*
