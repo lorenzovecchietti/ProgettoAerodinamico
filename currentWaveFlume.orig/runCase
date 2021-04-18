@@ -7,10 +7,11 @@ echo blockMesh meshing...
 blockMesh > blockMesh.log
 
 echo Setting the fields...
-setFields > setFields.log
+#setFields > setFields.log
+setOla > setOla.log
 
 echo Running...
 olaFlow > olaFlow.log
 
-echo Simulation complete.
+#echo Simulation complete.
 

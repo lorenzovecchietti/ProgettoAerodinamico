@@ -19,7 +19,7 @@ FoamFile
 
 waveType        regular;
 
-waveTheory      cnoidal;
+waveTheory      StokesV;
 
 genAbs          1;
 
@@ -29,12 +29,13 @@ nPaddles        1;
 
 waveHeight      0.10;
 
-wavePeriod      3;
+wavePeriod      0.5;
 
 waveDir         0.0;
 
 wavePhase       1.57079633;
 
 uCurrent        ($seaVelocity 0. 0.);
-
+uWind		($airVelocity 0. 0.);
+setWaterLevel	0.4;
 // ************************************************************************* //
