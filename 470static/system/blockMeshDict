@@ -1,0 +1,95 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  8                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1;
+
+xmin 	-30;
+xmax	50;
+ymin	-30;
+ymax	30;
+zmin	-20;
+zmax	5;
+
+
+vertices
+(
+    	($xmin $ymin $zmin)
+	($xmax $ymin $zmin)
+	($xmax $ymax $zmin)
+	($xmin $ymax $zmin)
+
+	($xmin $ymin $zmax)
+	($xmax $ymin $zmax)
+	($xmax $ymax $zmax)
+	($xmin $ymax $zmax)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (#calc"mag($xmin)+mag($xmax)" #calc"mag($ymin)+mag($ymax)" #calc"mag($zmin)+mag($zmax)") simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    sides
+    {
+        type symmetry;
+        faces
+        (
+            (3 7 6 2)
+            (1 5 4 0)
+        );
+    }
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    bottom
+    {
+        type symmetryPlane;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    atmosphere
+    {
+        type patch;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+);
+
+// ************************************************************************* //
