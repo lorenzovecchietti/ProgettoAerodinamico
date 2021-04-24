@@ -20,7 +20,7 @@ simulationType  RAS;
 RAS
 {
 
-    #inclued "../data"
+    #include "../data"
 
     turbulence      on;
 
