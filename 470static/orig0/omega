@@ -32,16 +32,12 @@ boundaryField
 
     outlet
     {
-       type            inletOutlet;
-       inletValue      $internalField;
-       value           $internalField;
+        type            zeroGradient;
     }
 
     atmosphere
     {
-        type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
+        type            zeroGradient;
     }
 
     hull

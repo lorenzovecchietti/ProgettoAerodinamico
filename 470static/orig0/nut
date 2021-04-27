@@ -26,18 +26,20 @@ boundaryField
 
     inlet
     {
-        type            fixedValue;
+        type            calculated;
         value           $internalField;
     }
 
     outlet
     {
-        type            zeroGradient;
+        type            calculated;
+        value           $internalField;
     }
 
     atmosphere
     {
-        type            zeroGradient;
+        type            calculated;
+        value           $internalField;
     }
     
     hull

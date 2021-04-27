@@ -34,10 +34,9 @@ boundaryField
 
     outlet
     {
-        type            outletPhaseMeanVelocity;
-        alpha           alpha.water;
-        UnMean          $UMean;
+        type            inletOutlet;
         value           $internalField;
+        inletValue      uniform (0 0 0);
     }
 
     atmosphere

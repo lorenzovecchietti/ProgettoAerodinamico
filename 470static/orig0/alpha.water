@@ -40,9 +40,7 @@ boundaryField
 
     atmosphere
     {
-        type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
+	type zeroGradient;
     }
 
     hull
