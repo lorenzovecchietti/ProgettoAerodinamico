@@ -51,25 +51,25 @@ vertices
 blocks
 (
 	// blocco acqua
-    hex (0 1 2 3 4 5 6 7) (30 20 100)//(#calc"$xmin+$xmax" #calc"$ymin+$ymax" 160) 		
+    hex (0 1 2 3 4 5 6 7) (30 20 110)//(#calc"$xmin+$xmax" #calc"$ymin+$ymax" 160) 		
     simpleGrading (
     		1	// x-direction
     		1	// y-direction
     		(
-    			(0.9	0.80	0.2)
-    			(0.1	0.20	1)
+    			(0.9	0.75	0.2)
+    			(0.1	0.25	1)
     		)	//z-direction
     		)
     		
     		
     	// blocco aria
-    hex (8 9 10 11 12 13 14 15) (30 20 70) 		
+    hex (8 9 10 11 12 13 14 15) (30 20 80) 		
     simpleGrading (
     		1	// x-direction
     		1	// y-direction
     		(
-    			(0.25	0.50	1)
-    			(0.75	0.50	6)
+    			(0.25	0.55	1)
+    			(0.75	0.45	6)
     		)	//z-direction
     		)
     		
