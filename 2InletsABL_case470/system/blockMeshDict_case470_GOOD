@@ -1,0 +1,140 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  8                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale 1;
+
+xmin 	-10;
+xmax	20;
+ymin	-10;
+ymax	10;
+zmin	-10;
+zmax	7;
+
+vertices
+(
+    	($xmin $ymin $zmin)
+	($xmax $ymin $zmin)
+	($xmax $ymax $zmin)
+	($xmin $ymax $zmin)
+
+	($xmin $ymin 0)
+	($xmax $ymin 0)
+	($xmax $ymax 0)
+	($xmin $ymax 0)
+	
+	
+	($xmin $ymin 0) //8
+	($xmax $ymin 0)
+	($xmax $ymax 0)
+	($xmin $ymax 0)
+
+	($xmin $ymin $zmax)
+	($xmax $ymin $zmax)
+	($xmax $ymax $zmax)
+	($xmin $ymax $zmax)
+);
+
+blocks
+(
+	// blocco acqua
+    hex (0 1 2 3 4 5 6 7) (30 20 100)//(#calc"$xmin+$xmax" #calc"$ymin+$ymax" 160) 		
+    simpleGrading (
+    		1	// x-direction
+    		1	// y-direction
+    		(
+    			(0.9	0.80	0.2)
+    			(0.1	0.20	1)
+    		)	//z-direction
+    		)
+    		
+    		
+    	// blocco aria
+    hex (8 9 10 11 12 13 14 15) (30 20 70) 		
+    simpleGrading (
+    		1	// x-direction
+    		1	// y-direction
+    		(
+    			(0.25	0.50	1)
+    			(0.75	0.50	6)
+    		)	//z-direction
+    		)
+    		
+);
+
+edges
+(
+);
+
+boundary
+(
+
+    inlet_water
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    inlet_air
+    {
+        type patch;
+        faces
+        (
+            (8 12 15 11)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+            (13 9 10 14)
+        );
+    }
+    atmosphere
+    {
+        type patch;
+        faces
+        (
+            (12 13 14 15)
+        );
+    }
+    bottom
+    {
+        type symmetryPlane;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    side
+    {
+        type symmetry;
+        faces
+        (
+            (3 7 6 2)
+            (11 15 14 10)
+            (1 5 4 0)
+            (8 9 13 12)
+        );
+    }
+
+);
+
+// ************************************************************************* //
