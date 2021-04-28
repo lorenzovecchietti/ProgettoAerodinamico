@@ -3,23 +3,17 @@ cd "${0%/*}" || exit
 . ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions
 #------------------------------------------------------------------------------
 
-echo "Run python for inizialization"
-python3 uProfile.py
-
-runApplication blockMesh -dict system/blockMeshDict_case470_GOOD
-
-restore0Dir
-
-runApplication setFields
-
-FOAM_SIGFPE=false setExprFields > log.setExprFields
-
 touch case.foam
+rm -rf 0 processor*
+rm log*
+
+cp -r 0.mapped 0
+
 
 runApplication decomposePar
 
 runParallel $(getApplication)
 
-runApplication reconstructPar
+#runApplication reconstructPar
 
 #------------------------------------------------------------------------------

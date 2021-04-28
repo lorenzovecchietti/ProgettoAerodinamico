@@ -10,12 +10,33 @@ runApplication blockMesh -dict system/blockMeshDict_case470_GOOD
 
 restore0Dir
 
+if [ 1 = 1 ];
+then
+for i in 1 2 3 4 5 6
+do
+
+    cp system/refineMeshDict.orig system/refineMeshDict
+    foamDictionary system/refineMeshDict -entry set -set c${i} > /dev/null
+
+    if [ ${i} = 6 ];
+    then
+    	foamDictionary system/refineMeshDict -entry directions -set '(tan1 tan2 normal)' > /dev/null
+    fi
+
+    topoSet > log.topoSet_c${i}
+    
+    echo "refineMesh c${i}"
+    refineMesh -dict system/refineMeshDict -overwrite > log.refineMesh__c${i}
+done
+fi
+
 runApplication setFields
 
 FOAM_SIGFPE=false setExprFields > log.setExprFields
 
 touch case.foam
 
+return
 runApplication decomposePar
 
 runParallel $(getApplication)

@@ -1,0 +1,62 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      setExprFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+#include "../data"
+expressions
+(
+    U
+    {
+        field       U;
+        dimensions  [0 1 -1 0 0 0 0];
+
+        constants
+        {
+uWater $uWater;
+uAir $uAir;
+hRef $hRef;
+k $k;
+zz $zz;
+hMax $hMax;
+hMaxSubd $hMaxSubd;
+
+//uWater 3.5;
+//uAir 8;
+//hRef 15;
+//k 0.41;
+//zz 0.0002;
+//hMax 15;
+//hMaxSubd 120;
+        }
+        variables
+        (
+        );
+
+        condition
+        #{
+            (pos().z() > 0)
+        #};
+
+        expression
+        #{
+            vector
+            (
+		$constants.k*($constants.uAir-$constants.uWater)/log($constants.hRef/$constants.zz+1)/$constants.k*log((pos().z()+$constants.zz)/$constants.zz)+$constants.uWater,
+		0.0,
+                0.0
+            )
+        #};
+    }
+);
+//                 $constants.k*($constants.uAir-$constants.uWater)/log($constants.hRef/$constants.z0+1)/$constants.k*log((pos().z()+$constants.z0)/$constants.z0)+$constants.uWater,
