@@ -1,0 +1,49 @@
+// Parametri Vento
+uWater		12;
+uAir		8;
+hRef		2;
+k		0.41;
+z0		0.0002;
+alpha		2;
+uWaterMin	12;
+
+// Blockmesh
+hMax		18;
+hMin		-13;
+xMin		-25;
+xMax            55;
+yMin            -20;
+yMax            20;
+xSubd           160;
+ySubd           80;
+hMaxSubd        88;
+hMinSubd        59;
+
+gradUpSurf	(0.22 0.57 1);
+gradAtm		(0.78 0.43 12.5);
+gradSea	        (0.81 0.47 0.08);
+gradDownSurf	(0.19 0.53 1);
+
+// refineMesh 1 (verticale)
+pos1Min         (-8 -7 -2.5);
+pos1Max         (8 7 7.5);
+
+// refineMesh 2 (orizzontale)
+pos2Min		(-8 -5 -2.5);
+pos2Max		(21 5 7.5);
+
+// refineMesh 3 (orizzontale)
+pos3Min         (-8 -4 -1.5);
+pos3Max         (10 4 6.5);
+
+// refineMesh 4 (orizzontale)
+pos4Min         (-7 -3 -1);
+pos4Max         (7  3 5.1);
+
+// refineMesh 5 (verticale)
+pos5Min         (8 -7 -1);
+pos5Max         (55  7 1);
+
+// snappyBox (deve essere all'interno dei 2 refineBox)
+posMin		(-6 -2.5 -0.5);
+posMax		(4 2.5 5);
