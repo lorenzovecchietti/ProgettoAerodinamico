@@ -7,32 +7,28 @@ runApplication surfaceFeatureExtract
 
 runApplication blockMesh
 
-for i in 1 2 3 4
+for i in 1 #2 3 4
 do
     runApplication -s $i \
         topoSet -dict system/topoSetDict.${i}
-
     runApplication -s $i \
         refineMesh -dict system/refineMeshDict.${i} -overwrite
 done
 
-runApplication decomposePar
+restore0Dir
 
-mv log.decomposePar log.decomposeParMesh
+runApplication decomposePar
 
 runParallel snappyHexMesh -overwrite
 
 runParallel topoSet -dict system/topoSetDict.5
-
 runParallel refineMesh -dict system/refineMeshDict.5 -overwrite
 
-runApplication reconstructParMesh -constant
-
-restore0Dir
-
-runApplication setFields
-FOAM_SIGFPE=false setExprFields > log.setExprFields
-FOAM_SIGFPE=false setExprBoundaryFields > log.setExprBoundaryFields
+runParallel setFields
+export FOAM_SIGFPE=false
+runParallel setExprFields
+runParallel setExprBoundaryFields
+export FOAM_SIGFPE=true
 
 touch case.foam
 
