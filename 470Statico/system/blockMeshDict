@@ -34,8 +34,14 @@ vertices
 
 blocks
 (
-    hex (1 5 4 0 2 6 7 3) ($xSubd $ySubd $hMaxSubd) simpleGrading (1 1 $gradMax)
-    hex (9 11 10 8 1 5 4 0) ($xSubd $ySubd $hMinSubd) simpleGrading (1 1 $gradMin)
+    hex (1 5 4 0 2 6 7 3) ($xSubd $ySubd $hMaxSubd) simpleGrading (1 1 
+               ($gradUpSurf
+               $gradAtm)
+           )
+    hex (9 11 10 8 1 5 4 0) ($xSubd $ySubd $hMinSubd) simpleGrading (1 1
+               ($gradSea
+               $gradDownSurf)
+           )
 );
 
 edges

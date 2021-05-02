@@ -8,25 +8,36 @@
 FoamFile
 {
     version     2.0;
-    format      binary;
-    class       featureEdgeMesh;
-    arch        "LSB;label=32;scalar=64";
-    location    "constant/triSurface";
-    object      hull470.eMesh;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      refineMeshDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+set             c0;
 
-// points:
+coordinateSystem global;
 
-0
+globalCoeffs
+{
+    tan1            (1 0 0);
+    tan2            (0 1 0);
+}
 
+patchLocalCoeffs
+{
+    patch           outside;
+    tan1            (1 0 0);
+}
 
-// edges:
+directions      ( normal );
 
-0
+useHexTopology  yes;
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+geometricCut    no;
+
+writeMesh       no;
 
 
 // ************************************************************************* //

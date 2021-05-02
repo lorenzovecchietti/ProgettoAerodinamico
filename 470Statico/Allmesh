@@ -7,21 +7,26 @@ runApplication surfaceFeatureExtract
 
 runApplication blockMesh
 
-#runApplication snappyHexMesh -overwrite -dict system/snappyHexMeshDictCastellated
-#mv log.snappyHexMesh log.snappyHexMesh_castellated
-
-for i in 1 2
+for i in 1 2 3 4
 do
     runApplication -s $i \
         topoSet -dict system/topoSetDict.${i}
 
     runApplication -s $i \
-        refineMesh -dict system/refineMeshDict -overwrite
+        refineMesh -dict system/refineMeshDict.${i} -overwrite
 done
 
-#runApplication snappyHexMesh -overwrite -dict system/snappyHexMeshDictCastellated
+runApplication decomposePar
 
-runApplication snappyHexMesh -overwrite
+mv log.decomposePar log.decomposeParMesh
+
+runParallel snappyHexMesh -overwrite
+
+runParallel topoSet -dict system/topoSetDict.5
+
+runParallel refineMesh -dict system/refineMeshDict.5 -overwrite
+
+runApplication reconstructParMesh -constant
 
 restore0Dir
 
