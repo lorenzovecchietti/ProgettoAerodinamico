@@ -1,9 +1,0 @@
-uWater		3.5;
-uAir		8;
-hRef		15;
-k		0.41;
-zz		0.0002;
-hMax		15;
-hMaxSubd	120;
-RASModel	kOmegaSST;
-//RASModel	kEpsilon;

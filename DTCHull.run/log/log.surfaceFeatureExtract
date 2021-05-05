@@ -1,0 +1,85 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _7bdb509494-20201222 OPENFOAM=2012
+Arch   : "LSB;label=32;scalar=64"
+Exec   : surfaceFeatureExtract
+Date   : May 05 2021
+Time   : 14:55:00
+Host   : debian
+PID    : 29579
+I/O    : uncollated
+Case   : /home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+
+Note: Feature line extraction only valid on closed manifold surfaces
+
+Reading surfaceFeatureExtractDict
+
+Surfaces     : DTC-scaled.stl
+Output       : DTC-scaled
+Load options : offset
+Write options: writeObj=yes writeVTK=off
+
+Statistics:
+Triangles    : 116062 in 1 region(s)
+Vertices     : 58033
+Bounding Box : (-0.113504 -0.429253 -2.51549e-11) (6.16209 0.429252 0.572322)
+
+Constructing feature set from included angle 150
+Selecting edges based purely on geometric tests: no
+
+Initial Feature set:
+    points : 3
+    edges  : 911
+    of which
+        region edges   : 0
+        external edges : 909
+        internal edges : 2
+
+Final Feature set:
+    points : 927
+    of which
+        convex             : 2
+        concave            : 0
+        mixed              : 1
+        non-feature        : 924
+    edges  : 911
+    of which
+        external edges     : 909
+        internal edges     : 2
+        flat edges         : 0
+        open edges         : 0
+        multiply connected : 0
+
+Writing extendedFeatureEdgeMesh to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled.extendedFeatureEdgeMesh"
+
+Writing extendedEdgeMesh components to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled"
+Writing 2 convex feature points to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_convexFeaturePts.obj"
+Writing 0 concave feature points to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_concaveFeaturePts.obj"
+Writing 1 mixed feature points to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_mixedFeaturePts.obj"
+Writing 1 mixed feature point structure to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_mixedFeaturePtsStructure.obj"
+Writing 909 external edges to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_externalEdges.obj"
+Writing 2 internal edges to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_internalEdges.obj"
+Writing 0 flat edges to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_flatEdges.obj"
+Writing 0 open edges to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_openEdges.obj"
+Writing 0 multiple edges to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_multipleEdges.obj"
+Writing 0 region edges to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_regionEdges.obj"
+Writing 911 edge directions to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/extendedFeatureEdgeMesh/DTC-scaled_edgeDirections.obj"
+
+Writing featureEdgeMesh to "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/DTCHull.run/constant/triSurface/DTC-scaled.eMesh"
+ExecutionTime = 0.68 s  ClockTime = 0 s
+
+End
+
