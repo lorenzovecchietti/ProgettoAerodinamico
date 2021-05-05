@@ -19,19 +19,20 @@ libs            (atmosphericModels);
 
 application     interFoam;
 
-startFrom       startTime;
+startFrom       latestTime;
 
 startTime       0;
 
 stopAt          endTime;
+//stopAt          writeNow;
 
-endTime         35;
+endTime         2000;
 
 deltaT          1;
 
 writeControl    adjustable;
 
-writeInterval   1;
+writeInterval   100;
 
 purgeWrite      0;
 
@@ -69,6 +70,16 @@ functions
         writeInterval   1;
         CofR            (2.929541 0 0.2);
     }
+
+residuals
+   {
+	type            solverInfo;
+	libs            (utilityFunctionObjects);
+	writeControl    timeStep;
+	writeInterval   1;
+	fields (alpha.water p_rgh);
+   }
+
 }
 
 
