@@ -1,0 +1,93 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _7bdb509494-20201222 OPENFOAM=2012
+Arch   : "LSB;label=32;scalar=64"
+Exec   : decomposePar
+Date   : May 10 2021
+Time   : 09:49:45
+Host   : debian
+PID    : 9882
+I/O    : uncollated
+Case   : /home/lorenzo/OpenFOAM/lorenzo-v2012/run/convergenceStudy/2
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+
+
+Decomposing mesh region0
+
+Create mesh
+
+Calculating distribution of cells
+Selecting decompositionMethod hierarchical [4]
+
+Finished decomposition in 0.96 s
+
+Calculating original mesh data
+
+Distributing cells to processors
+
+Distributing faces to processors
+
+Distributing points to processors
+
+Constructing processor meshes
+
+Processor 0
+    Number of cells = 334653
+    Number of faces shared with processor 1 = 10669
+    Number of processor patches = 1
+    Number of processor faces = 10669
+    Number of boundary faces = 13623
+
+Processor 1
+    Number of cells = 334653
+    Number of faces shared with processor 0 = 10669
+    Number of faces shared with processor 2 = 10781
+    Number of processor patches = 2
+    Number of processor faces = 21450
+    Number of boundary faces = 6998
+
+Processor 2
+    Number of cells = 334653
+    Number of faces shared with processor 1 = 10781
+    Number of faces shared with processor 3 = 10890
+    Number of processor patches = 2
+    Number of processor faces = 21671
+    Number of boundary faces = 7050
+
+Processor 3
+    Number of cells = 334653
+    Number of faces shared with processor 2 = 10890
+    Number of processor patches = 1
+    Number of processor faces = 10890
+    Number of boundary faces = 21591
+
+Number of processor faces = 32340
+Max number of cells = 334653 (0% above average 334653)
+Max number of processor patches = 2 (33.3333% above average 1.5)
+Max number of faces between processors = 21671 (34.0198% above average 16170)
+
+Time = 0
+
+
+--> FOAM FATAL IO ERROR: (openfoam-2012)
+Cannot open include file "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/convergenceStudy/2/0/../data" while reading dictionary "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/convergenceStudy/2/0/k"
+
+file: /home/lorenzo/OpenFOAM/lorenzo-v2012/run/convergenceStudy/2/0/k at line 17.
+
+    From static bool Foam::functionEntries::includeEntry::execute(bool, Foam::dictionary&, Foam::Istream&)
+    in file db/dictionary/functionEntries/includeEntry/includeEntry.C at line 170.
+
+FOAM exiting
+

@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      setExprBoundaryFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include "../data"
+
+pattern
+{
+    field   U;
+
+    expressions
+    (
+        {
+            patch   inlet;
+            target  value;
+	    constants
+	    {
+	        uWater $uWater;
+	        uAir $uAir;
+	        hRef $hRef;
+	        hMin $hMin;
+	        k $k;
+		z0 $z0;
+                uWaterMin $uWaterMin;
+                alpha $alpha;
+	    };
+
+            expression 
+		#{
+			(pos().z() < 0 ?
+				vector( $constants.uWaterMin+($constants.uWater-$constants.uWaterMin)*exp($constants.alpha*pos().z()), 0, 0) : vector( $constants.k*($constants.uAir-$constants.uWater)/(log($constants.hRef/$constants.z0+1))*log((pos().z()+$constants.z0)/$constants.z0)/$constants.k+$constants.uWater, 0, 0)
+			) 
+		#};
+         }
+         {
+            patch   atmosphere;
+            target  value;
+            constants
+            {
+                uWater $uWater;
+                uAir $uAir;
+                hRef $hRef;
+                hMin $hMin;
+                k $k;
+                z0 $z0;
+            };
+
+            expression
+                #{
+			vector( $constants.k*($constants.uAir-$constants.uWater)/(log($constants.hRef/$constants.z0+1))*log((pos().z()+$constants.z0)/$constants.z0)/$constants.k+$constants.uWater, 0, 0)
+                #};
+        }
+    );
+
+}
+
+
+// ************************************************************************* //
+
