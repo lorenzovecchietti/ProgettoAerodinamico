@@ -1,0 +1,21 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+runApplication surfaceFeatureExtract
+runApplication blockMesh
+runApplication decomposePar
+runParallel snappyHexMesh -overwrite
+
+runApplication reconstructParMesh -constant  -fullMatch -mergeTol 1e-6
+restore0Dir
+python3 points.py
+
+rm log.decomposePar
+runApplication decomposePar -force
+runParallel patchSummary
+runParallel potentialFoam
+runParallel checkMesh -writeFields '(nonOrthoAngle)' -constant
+
+#------------------------------------------------------------------------------

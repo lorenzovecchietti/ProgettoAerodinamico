@@ -1,0 +1,40 @@
+// Dati
+uWater		3.5;
+liftTarget	0.7;
+liftDir		(0 1 0);
+
+// BlockMes
+xMin    -10;
+xMax     30;
+yMin    -10;
+yMax     10;
+zMin	-10;
+zMax	  0;
+
+xSubd	 40;
+ySubd    20;
+zSubd    10;
+
+// Boxes
+posMin1		(-9	    -5	     -6);
+posMax1		(24	     5	      0);
+
+posMin2		(-6	    -3	     -5);
+posMax2		(16	     3	      0);
+
+posMin3		(-5	    -2	     -4);
+posMax3		(12	     2	      0);
+
+//posMin4		(-4	   -1.5	   -2.5);
+//posMax4		(7          1.5	      0);
+
+//posMin5		(-3	  -0.75	   -1.5);
+//posMax5		(3.5	   0.75	      0);
+
+
+posMin4               (-7        -1.5    -2.5);
+posMax4               (-7          1.5       0);
+
+posMin5               (-3       -0.75    -1.5);
+posMax5               (-3       0.75       0);
+
