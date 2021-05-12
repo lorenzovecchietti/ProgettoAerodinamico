@@ -8,63 +8,57 @@
 FoamFile
 {
     version     2.0;
-    format      ascii;
+    format      binary;
     class       volVectorField;
+    arch        "LSB;label=32;scalar=64";
     location    "0";
     object      U;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-#include        "../data"
-
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform ($uWater 0 0);
+
+internalField   uniform (3.5 0 0);
 
 boundaryField
 {
-    inlet
-    {
-	type  fixedValue;
-	value $internalField;
-    }
-
-    outlet
-    {
-        type            inletOutlet;
-        inletValue      uniform (0 0 0);
-        value           $internalField;
-    }
-
-    lowerWall
-    {
-        type            inletOutlet;
-        inletValue      uniform (0 0 0);
-        value           $internalField;
-    }
-
-    hull
-    {
-        type            noSlip;
-    }
-
-    keel
-    {
-        type            noSlip;
-    }
-
-    upperWall
-    {
-        type            inletOutlet;
-        inletValue      uniform (0 0 0);
-        value           $internalField;
-    }
-
     frontAndBack
     {
         type            inletOutlet;
         inletValue      uniform (0 0 0);
-        value           $internalField;
+        value           uniform (3.5 0 0);
+    }
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (3.5 0 0);
+    }
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
+        value           uniform (3.5 0 0);
+    }
+    lowerWall
+    {
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
+        value           uniform (3.5 0 0);
+    }
+    upperWall
+    {
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
+        value           uniform (3.5 0 0);
+    }
+    hull
+    {
+        type            noSlip;
+    }
+    keel
+    {
+        type            noSlip;
     }
 }
 

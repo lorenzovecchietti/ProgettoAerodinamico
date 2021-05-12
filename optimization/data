@@ -1,6 +1,6 @@
 // Dati
 uWater		3.5;
-liftTarget	0.7;
+liftTarget	-0.7;
 liftDir		(0 1 0);
 
 // BlockMes

@@ -8,8 +8,9 @@
 FoamFile
 {
     version     2.0;
-    format      ascii;
+    format      binary;
     class       volScalarField;
+    arch        "LSB;label=32;scalar=64";
     location    "0";
     object      nuTilda;
 }
@@ -17,49 +18,44 @@ FoamFile
 
 dimensions      [0 2 -1 0 0 0 0];
 
-internalField   uniform 1.5e-04;
+
+internalField   uniform 0.00015;
 
 boundaryField
 {
-    outlet
-    {
-        type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
-    }
-
-    lowerWall
-    {
-        type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
-    }
-
     frontAndBack
     {
         type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
+        inletValue      uniform 0.00015;
+        value           uniform 0.00015;
     }
-
     inlet
     {
-	type  fixedValue;
-	value $internalField;
+        type            fixedValue;
+        value           uniform 0.00015;
     }
-
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 0.00015;
+        value           uniform 0.00015;
+    }
+    lowerWall
+    {
+        type            inletOutlet;
+        inletValue      uniform 0.00015;
+        value           uniform 0.00015;
+    }
     upperWall
     {
         type            fixedValue;
         value           uniform 0;
     }
-
     hull
     {
         type            fixedValue;
         value           uniform 0;
     }
-
     keel
     {
         type            fixedValue;

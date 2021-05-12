@@ -49,7 +49,7 @@ solvers
 
 potentialFlow
 {
-    nNonOrthogonalCorrectors 10;
+    nNonOrthogonalCorrectors 30;
 }
 
 relaxationFactors

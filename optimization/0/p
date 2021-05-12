@@ -8,53 +8,51 @@
 FoamFile
 {
     version     2.0;
-    format      ascii;
+    format      binary;
     class       volScalarField;
+    arch        "LSB;label=32;scalar=64";
+    location    "0";
     object      p;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 2 -2 0 0 0 0];
 
+
 internalField   uniform 0;
 
 boundaryField
 {
-    inlet
-    {
-        type            zeroGradient;
-    }
-
-    outlet
-    {
-        type            fixedValue;
-        value           $internalField;
-    }
-
-    lowerWall
-    {
-        type            zeroGradient;
-    }
-
-    hull
-    {
-        type            zeroGradient;
-    }
-
-    keel
-    {
-        type            zeroGradient;
-    }
-
-    upperWall
-    {
-        type            zeroGradient;
-    }
-
     frontAndBack
     {
         type            zeroGradient;
     }
+    inlet
+    {
+        type            zeroGradient;
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+    lowerWall
+    {
+        type            zeroGradient;
+    }
+    upperWall
+    {
+        type            zeroGradient;
+    }
+    hull
+    {
+        type            zeroGradient;
+    }
+    keel
+    {
+        type            zeroGradient;
+    }
 }
+
 
 // ************************************************************************* //

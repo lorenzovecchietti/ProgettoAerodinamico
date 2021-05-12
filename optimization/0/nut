@@ -8,14 +8,16 @@
 FoamFile
 {
     version     2.0;
-    format      ascii;
+    format      binary;
     class       volScalarField;
+    arch        "LSB;label=32;scalar=64";
     location    "0";
     object      nut;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 2 -1 0 0 0 0];
+
 
 internalField   uniform 0;
 
@@ -26,37 +28,31 @@ boundaryField
         type            calculated;
         value           uniform 0;
     }
-
     inlet
     {
         type            calculated;
         value           uniform 0;
     }
-
     outlet
     {
         type            calculated;
         value           uniform 0;
     }
-
     lowerWall
     {
         type            calculated;
         value           uniform 0;
     }
-
     upperWall
     {
         type            calculated;
         value           uniform 0;
     }
-
     hull
     {
         type            nutUSpaldingWallFunction;
         value           uniform 0;
     }
-
     keel
     {
         type            nutUSpaldingWallFunction;

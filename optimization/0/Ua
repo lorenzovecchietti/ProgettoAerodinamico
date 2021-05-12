@@ -8,8 +8,9 @@
 FoamFile
 {
     version     2.0;
-    format      ascii;
+    format      binary;
     class       volVectorField;
+    arch        "LSB;label=32;scalar=64";
     location    "0";
     object      Ua;
 }
@@ -17,53 +18,47 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
+
 internalField   uniform (0 0 0);
 
 boundaryField
 {
-    inlet
-    {
-        type            adjointInletVelocity;
-        value           $internalField;
-    }
-
-    outlet
-    {
-        type            adjointOutletVelocity;
-        inletValue      uniform (0 0 0);
-        value           $internalField;
-    }
-
-    lowerWall
-    {
-        type            adjointFarFieldVelocity;
-        value           $internalField;
-    }
-
-    keel
-    {
-        type            adjointWallVelocity;
-        value           $internalField;
-    }
-
-    hull
-    {
-        type            adjointWallVelocity;
-        value           $internalField;
-    }
-
-    upperWall
-    {
-        type            adjointFarFieldVelocity;
-        value           $internalField;
-    }
-
     frontAndBack
     {
         type            adjointFarFieldVelocity;
-        value           $internalField;
+        value           uniform (0 0 0);
     }
-
+    inlet
+    {
+        type            adjointInletVelocity;
+        value           uniform (0 0 0);
+    }
+    outlet
+    {
+        type            adjointOutletVelocity;
+        inletValue      uniform ( 0 0 0 );
+        value           uniform (0 0 0);
+    }
+    lowerWall
+    {
+        type            adjointFarFieldVelocity;
+        value           uniform (0 0 0);
+    }
+    upperWall
+    {
+        type            adjointFarFieldVelocity;
+        value           uniform (0 0 0);
+    }
+    hull
+    {
+        type            adjointWallVelocity;
+        value           uniform (0 0 0);
+    }
+    keel
+    {
+        type            adjointWallVelocity;
+        value           uniform (0 0 0);
+    }
 }
 
 

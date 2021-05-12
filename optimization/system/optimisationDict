@@ -58,6 +58,7 @@ adjointManagers
                 active                 true;
                 type                   incompressible;
                 solver                 adjointSimple;
+                isConstraint           true;
 
                 // manage objectives
                 //------------------
@@ -76,10 +77,10 @@ adjointManagers
                             rhoInf     1;
                             UInf       $uWater;
                         }
-/*                        lift
+                        lift
                         {
                             weight     1.;
-                            type       forceTarget;
+                            type       force;
                             patches    ("keel");
                             direction  $liftDir;
                             Aref       1;
@@ -87,7 +88,7 @@ adjointManagers
                             UInf       1;
 			    target     $liftTarget;
                         }
-*/                    }
+                    }
                 }
                 // ATC treatment
                 //--------------
@@ -127,16 +128,17 @@ optimisation
     sensitivities
     {
         type     volumetricBSplinesFI;
-        patches  (keelmes);
+        patches  (keel);
     }
     updateMethod
     {
-        method conjugateGradient;
-        lineSearch
-        {
-            type    ArmijoConditions;
-        }
-        //eta 1; //optional
+	method SQP ;
+	SQP
+	{
+	etaHessian		0.8;
+	nSteepestDescent 	1;
+	scaleFirstHessian 	true;
+	}
     }
     meshMovement
     {
