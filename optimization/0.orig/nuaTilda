@@ -36,8 +36,7 @@ boundaryField
 
     lowerWall
     {
-        type            fixedValue;
-        value           uniform 0;
+        type            symmetry;
     }
 
     keel
@@ -60,8 +59,7 @@ boundaryField
 
     frontAndBack
     {
-        type            fixedValue;
-        value           uniform 0;
+        type            symmetry;
     }
 }
 

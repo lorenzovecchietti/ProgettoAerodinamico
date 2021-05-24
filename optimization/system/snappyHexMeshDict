@@ -19,7 +19,7 @@ FoamFile
 // Which of the steps to run
 castellatedMesh true;
 snap            true;
-addLayers       true;
+addLayers       false;
 
 
 geometry
@@ -95,11 +95,11 @@ castellatedMeshControls
     {
         hull
         {
-            level (0 0);
+            level (3 4);
         }
 	keel
 	{
-	    level (0 0);
+	    level (4 5);
 	}
     }
 

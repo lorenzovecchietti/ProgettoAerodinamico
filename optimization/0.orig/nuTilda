@@ -30,16 +30,12 @@ boundaryField
 
     lowerWall
     {
-        type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
+        type            symmetry;
     }
 
     frontAndBack
     {
-        type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
+        type            symmetry;
     }
 
     inlet

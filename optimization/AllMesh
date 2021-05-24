@@ -12,10 +12,6 @@ runApplication reconstructParMesh -constant  -fullMatch -mergeTol 1e-6
 restore0Dir
 python3 points.py
 
-rm log.decomposePar
-runApplication decomposePar -force
-runParallel patchSummary
-runParallel potentialFoam
-runParallel checkMesh -writeFields '(nonOrthoAngle)' -constant
+runApplication checkMesh -writeFields '(nonOrthoAngle)' -constant
 
 #------------------------------------------------------------------------------

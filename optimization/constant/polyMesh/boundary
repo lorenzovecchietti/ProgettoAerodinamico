@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  v2012                                 |
+|  \\    /   O peration     | Version:  2012                                  |
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -20,47 +20,49 @@ FoamFile
 (
     frontAndBack
     {
-        type            patch;
+        type            symmetry;
+        inGroups        1(symmetry);
         nFaces          800;
-        startFace       4290233;
+        startFace       4292043;
     }
     inlet
     {
         type            patch;
         nFaces          380;
-        startFace       4291033;
+        startFace       4292843;
     }
     outlet
     {
         type            patch;
         nFaces          200;
-        startFace       4291413;
+        startFace       4293223;
     }
     lowerWall
     {
-        type            patch;
+        type            symmetry;
+        inGroups        1(symmetry);
         nFaces          800;
-        startFace       4291613;
+        startFace       4293423;
     }
     upperWall
     {
         type            patch;
         nFaces          24481;
-        startFace       4292413;
+        startFace       4294223;
     }
     hull
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          5356;
-        startFace       4316894;
+        nFaces          5381;
+        startFace       4318704;
     }
     keel
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          3077;
-        startFace       4322250;
+        nFaces          3435;
+        startFace       4324085;
     }
 )
 

@@ -21,7 +21,7 @@ ddtSchemes
 
 gradSchemes
 {
-    default         Gauss linear;
+    default         cellLimited Gauss linear 1;
     grad(U)         cellLimited Gauss linear 1;
     grad(nuTilda)   cellLimited Gauss linear 1;
     gradDConv       cellLimited Gauss linear 1;
@@ -31,14 +31,17 @@ gradSchemes
 
 divSchemes
 {
-    default                 Gauss linear;
-    div(phi,U)              bounded Gauss linearUpwindV grad(U);
-    div(phi,nuTilda)        bounded Gauss upwind;
-    div(yPhi,yWall)                 Gauss linearUpwind gradDConv;
+    default                 		Gauss linear;
+    div(phi,U)              		bounded Gauss linearUpwindV grad(U);
+    div(phi,nuTilda)        		bounded Gauss upwind;
+    div(yPhi,yWall)                 	Gauss linearUpwind gradDConv;
 
-    div(-phiMean,Ua)        bounded Gauss upwind;
-    div(-phiMean,nuaTilda)  bounded Gauss upwind;
-    div(-yPhi,da)                   Gauss upwind;
+    div(-phiMean,UaadjS1)        	bounded Gauss upwind;
+    div(-phiMean,nuaTildaadjS1)  	bounded Gauss upwind;
+    div(-phiMean,UaadjS2)        	bounded Gauss upwind;
+    div(-phiMean,nuaTildaadjS2)  	bounded Gauss upwind;
+    div(-yPhi,daadjS1)            	Gauss upwind;
+    div(-yPhi,daadjS2)            	Gauss upwind;
 }
 
 laplacianSchemes
@@ -62,8 +65,8 @@ wallDist
     advectionDiffusionCoeffs
     {
         method    meshWave;
-        tolerance 1.e-5;
-        maxIter   1000;
+        tolerance 5.e-5;
+        maxIter   500;
         epsilon   0.1;
     }
 }

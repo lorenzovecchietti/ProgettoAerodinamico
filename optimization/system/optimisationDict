@@ -58,7 +58,7 @@ adjointManagers
                 active                 true;
                 type                   incompressible;
                 solver                 adjointSimple;
-                isConstraint           true;
+                useSolverNameForFields true;
 
                 // manage objectives
                 //------------------
@@ -77,6 +77,48 @@ adjointManagers
                             rhoInf     1;
                             UInf       $uWater;
                         }
+                    }
+                }
+                // ATC treatment
+                //--------------
+                ATCModel
+                {
+                    ATCModel          standard;
+                    extraConvection   0;
+                    nSmooth           1;
+                    zeroATCPatchTypes (wall patch);
+                    maskType          pointCells;
+                }
+                // solution control
+                //------------------
+                solutionControls
+                {
+                    consistent yes;
+                    nIters 750;
+                    residualControl
+                    {
+                        "pa.*"       1.e-5;
+                        "Ua.*"       1.e-5;
+                    }
+                }
+            }
+            adjS2
+            {
+                // choose adjoint solver
+                //----------------------
+                active                 true;
+                type                   incompressible;
+                solver                 adjointSimple;
+                useSolverNameForFields true;
+                isConstraint           true;
+
+                // manage objectives
+                //------------------
+                objectives
+                {
+                    type incompressible;
+                    objectiveNames
+                    {
                         lift
                         {
                             weight     1.;
@@ -85,8 +127,8 @@ adjointManagers
                             direction  $liftDir;
                             Aref       1;
                             rhoInf     1;
-                            UInf       1;
-			    target     $liftTarget;
+                            UInf       $uWater;
+			     target     $liftTarget;
                         }
                     }
                 }
@@ -105,7 +147,7 @@ adjointManagers
                 solutionControls
                 {
                     consistent yes;
-                    nIters 1000;
+                    nIters 750;
                     residualControl
                     {
                         "pa.*"       1.e-5;
@@ -132,7 +174,12 @@ optimisation
     }
     updateMethod
     {
-	method SQP ;
+/*    method   constraintProjection;
+    constraintProjection
+    {
+       useCorrection true;
+    } */
+        method SQP ;
 	SQP
 	{
 	etaHessian		0.8;

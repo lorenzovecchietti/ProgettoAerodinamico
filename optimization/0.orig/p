@@ -33,7 +33,7 @@ boundaryField
 
     lowerWall
     {
-        type            zeroGradient;
+        type            symmetry;
     }
 
     hull
@@ -53,7 +53,7 @@ boundaryField
 
     frontAndBack
     {
-        type            zeroGradient;
+        type            symmetry;
     }
 }
 

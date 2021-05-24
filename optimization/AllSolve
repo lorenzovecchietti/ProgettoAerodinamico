@@ -2,6 +2,10 @@
 cd "${0%/*}" || exit                                # Run from this directory
 . ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
 #------------------------------------------------------------------------------
+rm log.decomposePar
+runApplication decomposePar -force
+runParallel patchSummary
+runParallel potentialFoam
 
 runParallel $(getApplication)
 runParallel cumulativeDisplacement

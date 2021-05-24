@@ -38,9 +38,7 @@ boundaryField
 
     lowerWall
     {
-        type            inletOutlet;
-        inletValue      uniform (0 0 0);
-        value           $internalField;
+        type            symmetry;
     }
 
     hull
@@ -62,9 +60,7 @@ boundaryField
 
     frontAndBack
     {
-        type            inletOutlet;
-        inletValue      uniform (0 0 0);
-        value           $internalField;
+        type            symmetry;
     }
 }
 

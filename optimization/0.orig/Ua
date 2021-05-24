@@ -36,8 +36,7 @@ boundaryField
 
     lowerWall
     {
-        type            adjointFarFieldVelocity;
-        value           $internalField;
+        type            symmetry;
     }
 
     keel
@@ -60,8 +59,7 @@ boundaryField
 
     frontAndBack
     {
-        type            adjointFarFieldVelocity;
-        value           $internalField;
+        type            symmetry;
     }
 
 }
