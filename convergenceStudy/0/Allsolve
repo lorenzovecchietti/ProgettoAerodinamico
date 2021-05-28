@@ -1,0 +1,21 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+restore0Dir
+
+runApplication reconstructParMesh -constant -fullMatch -mergeTol 1e-6
+
+runApplication setFields
+export FOAM_SIGFPE=false
+runApplication setExprFields
+runApplication setExprBoundaryFields
+export FOAM_SIGFPE=true
+
+runApplication decomposePar -force
+runParallel renumberMesh -overwrite
+runParallel $(getApplication)
+runApplication reconstructPar
+
+#------------------------------------------------------------------------------
