@@ -17,7 +17,7 @@ FoamFile
 
 libs            (atmosphericModels);
 
-application     interFoam;
+application     interIsoFoam;
 
 startFrom       latestTime;
 
@@ -26,9 +26,9 @@ startTime       0;
 stopAt          endTime;
 //stopAt          writeNow;
 
-endTime         10;
+endTime         30;
 
-deltaT          0.1;
+deltaT          0.01;
 
 writeControl    adjustable;
 
@@ -51,7 +51,7 @@ runTimeModifiable yes;
 adjustTimeStep  yes;
 
 maxCo           500;
-maxAlphaCo      20;
+maxAlphaCo      3;
 maxDeltaT       0.1;
 
 
