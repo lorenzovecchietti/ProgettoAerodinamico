@@ -1,0 +1,57 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _7bdb509494-20201222 OPENFOAM=2012 patch=210414
+Arch   : "LSB;label=32;scalar=64"
+Exec   : setExprBoundaryFields
+Date   : May 30 2021
+Time   : 00:28:25
+Host   : debian
+PID    : 8182
+I/O    : uncollated
+Case   : /home/lorenzo/OpenFOAM/lorenzo-v2012/run/convergenceStudy/3
+nProcs : 1
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+Time = 0
+Ignoring non-dictionary entry uWater
+Ignoring non-dictionary entry uAir
+Ignoring non-dictionary entry hRef
+Ignoring non-dictionary entry k
+Ignoring non-dictionary entry z0
+Ignoring non-dictionary entry alpha
+Ignoring non-dictionary entry uWaterMin
+Ignoring non-dictionary entry hMax
+Ignoring non-dictionary entry hMin
+Processing field U
+Set boundaryField/inlet/value
+with expression
+<<<<
+
+			(pos().z() < 0 ?
+				vector( 3.500000+(3.500000-3.500000)*exp(2*pos().z()), 0, 0) : vector( 0.410000*(8-3.500000)/(log(2/0.000200+1))*log((pos().z()+0.000200)/0.000200)/0.410000+3.500000, 0, 0)
+			) 
+		
+>>>>
+Set boundaryField/atmosphere/value
+with expression
+<<<<
+
+			vector( 0.410000*(8-3.500000)/(log(2/0.000200+1))*log((pos().z()+0.000200)/0.000200)/0.410000+3.500000, 0, 0)
+                
+>>>>
+Write "/home/lorenzo/OpenFOAM/lorenzo-v2012/run/convergenceStudy/3/0/U"
+
+End
+
