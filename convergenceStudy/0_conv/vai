@@ -1,0 +1,5 @@
+runApplication decomposePar -force
+#runParallel renumberMesh -overwrite
+runParallel $(getApplication)
+
+notify "Finito"

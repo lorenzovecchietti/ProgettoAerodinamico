@@ -1,0 +1,99 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dynamicFvMesh   dynamicMotionSolverFvMesh;
+
+motionSolverLibs   ("librigidBodyMeshMotion.so");
+
+motionSolver    rigidBodyMotion;
+report          on;
+solver
+	{
+	    type Newmark;
+	}
+accelerationRelaxation 0.2;
+
+bodies
+{
+
+	hull
+	{
+		type            rigidBody;
+		 parent          root;
+		patches         (hull);
+		innerDistance   0.1;
+		outerDistance   1.2;
+
+		centreOfMass    (-2.2 0 0);
+		mass            125;
+		inertia 	(43 0 0 330 0 360);
+		transform       (1 0 0 0 1 0 0 0 1) (0 0 0);
+		rhoInf          1;
+		
+
+		value           uniform (0 0 0);
+		
+		joint
+		{
+		    type    composite;
+		    joints
+		    (
+		        {
+		            type Pz;
+		        }
+		        {
+		            type Ry;
+		        }
+		    );
+		}
+        }
+
+	
+
+}
+/*
+constraints
+{
+    zAxis
+    {
+        sixDoFRigidBodyMotionConstraint line;
+        direction     (0 0 1);
+    }
+    yPlane
+    {
+        sixDoFRigidBodyMotionConstraint axis;
+        axis          (0 1 0);
+    }
+}
+*/
+/*
+restraints
+{
+    translationDamper
+    {
+        sixDoFRigidBodyMotionRestraint linearDamper;
+        coeff         8596;
+    }
+    rotationDamper
+    {
+        sixDoFRigidBodyMotionRestraint sphericalAngularDamper;
+        coeff         11586;
+    }
+}
+*/
+
+
+// ************************************************************************* //

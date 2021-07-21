@@ -1,0 +1,33 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+runApplication surfaceFeatureExtract
+
+runApplication blockMesh
+
+for i in 1 2 3 4
+do
+    runApplication -s $i \
+        topoSet -dict system/topoSetDict.${i}
+
+    runApplication -s $i \
+        refineMesh -overwrite
+done
+
+restore0Dir
+
+runApplication decomposePar -force
+runParallel snappyHexMesh -overwrite
+runApplication reconstructParMesh -constant -fullMatch -mergeTol 1e-6
+
+runApplication setFields
+export FOAM_SIGFPE=false
+runApplication setExprFields
+runApplication setExprBoundaryFields
+export FOAM_SIGFPE=true
+
+touch case.foam
+
+#------------------------------------------------------------------------------
